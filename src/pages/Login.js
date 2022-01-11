@@ -85,10 +85,6 @@ const mapDispatchToProps = (dispatch) => ({
   dispatchSetValue: (value) => dispatch(emailValue(value)),
 });
 
-// const mapStateToProps = (state) => ({
-//   email: state.login.email,
-// });
-
 export default connect(null, mapDispatchToProps)(Login);
 
 Login.propTypes = {
