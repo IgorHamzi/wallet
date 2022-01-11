@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import Wallet from '../pages/Wallet';
+import { emailValue } from '../actions/index';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.state = {
@@ -14,14 +15,10 @@ export default class Login extends Component {
 
     this.enableDisableBtn = this.enableDisableBtn.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
-    this.onClickButton = this.onClickButton.bind(this);
   }
 
   onInputChange({ target: { value, name } }) {
     this.setState({ [name]: value }, () => { this.enableDisableBtn(); });
-  }
-
-  onClickButton() {
   }
 
   enableDisableBtn() {
@@ -43,8 +40,8 @@ export default class Login extends Component {
         buttonDisabled,
       },
       onInputChange,
-      onClickButton,
     } = this;
+    const { dispatchSetValue } = this.props;
     return (
       <div data-testid="page-login">
         <form>
@@ -63,17 +60,17 @@ export default class Login extends Component {
             <input
               data-testid="password-input"
               name="userPassword"
-              type=""
+              type="password"
               value={ userPassword }
               onChange={ onInputChange }
             />
           </label>
-          <Link to="/wallet">
+          <Link to="/carteira">
             <button
               type="button"
               data-testid="login-submit-button"
               disabled={ buttonDisabled }
-              onClick={ onClickButton }
+              onClick={ () => dispatchSetValue(userEmail) }
             >
               Entrar
             </button>
@@ -83,3 +80,17 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  dispatchSetValue: (value) => dispatch(emailValue(value)),
+});
+
+// const mapStateToProps = (state) => ({
+//   email: state.login.email,
+// });
+
+export default connect(null, mapDispatchToProps)(Login);
+
+Login.propTypes = {
+  dispatchSetValue: PropTypes.func.isRequired,
+};
