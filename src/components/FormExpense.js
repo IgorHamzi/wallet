@@ -42,11 +42,12 @@ class FormExpense extends Component {
     const url = await fetch('https://economia.awesomeapi.com.br/json/all');
     const responseJson = await url.json();
     delete responseJson.USDT;
+    console.log(responseJson);
     const objSome = Object.values(responseJson).filter((coin) => (
       coin.code === currency
     ));
-    const some = Number(objSome[0].ask) * Number(value);
-    const sum = totalValue + some;
+    const valueBRL = Number(objSome[0].ask) * Number(value);
+    const sum = totalValue + valueBRL;
     this.setState({ totalValue: sum });
     const objExpenses = {
       value,
@@ -56,6 +57,9 @@ class FormExpense extends Component {
       tag,
       responseJson,
       total: sum,
+      brlValue: valueBRL,
+      ask: objSome.ask,
+      name: objSome.name,
     };
     dispatchSetValue(objExpenses);
     this.setState({

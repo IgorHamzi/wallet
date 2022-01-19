@@ -5,6 +5,9 @@ const INITIAL_STATE = {
   currencies: [],
   expenses: [],
   valueCoin: 0,
+  brlValue: 0,
+  ask: 0,
+  name: '',
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -21,10 +24,13 @@ const wallet = (state = INITIAL_STATE, action) => {
         currency: action.payload.currency,
         exchangeRates: action.payload.responseJson,
       }],
-      currencies: [...state.currencies, {
-        exchangeRates: action.payload.responseJson,
-      }],
+      // currencies: [...state.currencies, {
+      //   exchangeRates: action.payload.responseJson,
+      // }],
       valueCoin: action.payload.total,
+      brlValue: action.payload.brlValue,
+      ask: action.payload.ask,
+      name: action.payload.name,
     };
   default:
     return state;
