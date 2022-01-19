@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// // // import { connect } from 'react-redux';
-// // // import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export class TableExpenses extends Component {
   render() {
@@ -12,42 +12,56 @@ export class TableExpenses extends Component {
     //   currency,
     //   valueCurrency,
     //   brlValue } = this.props;
+    const { expenses } = this.props;
     return (
-      <div>
+      <section>
         <table>
-          <th>Descrição</th>
-          <th>Tag</th>
-          <th>Método de pagamento</th>
-          <th>Valor</th>
-          <th>Moeda</th>
-          <th>Câmbio utilizado</th>
-          <th>Valor convertido</th>
-          <th>Moeda de conversão</th>
-          <th>Editar/Excluir</th>
+          <tr>
+            <th>Descrição</th>
+            <th>Tag</th>
+            <th>Método de pagamento</th>
+            <th>Valor</th>
+            <th>Moeda</th>
+            <th>Câmbio utilizado</th>
+            <th>Valor convertido</th>
+            <th>Moeda de conversão</th>
+            <th>Editar/Excluir</th>
+          </tr>
+          <tr>
+            {expenses.map((expense) => (
+              <>
+                <td>{expense.description}</td>
+                <td>{expense.tag}</td>
+                <td>{expense.method}</td>
+                <td>{expense.value}</td>
+                <td>{expense.exchangeRates[expense.currency].name.split('/')[0]}</td>
+                <td>
+                  {Number((expense.exchangeRates[expense.currency].ask)).toFixed(2)}
+                </td>
+                <td>
+                  {Number(
+                    (expense.exchangeRates[expense.currency].ask * expense.value),
+                  ).toFixed(2)}
+                </td>
+                <td>Real</td>
+                <button type="button">
+                  Editar/Excluir
+                </button>
+              </>
+            ))}
+          </tr>
         </table>
-      </div>
+      </section>
     );
   }
 }
 
-// // // const mapStateToProps = (state) => ({
-// // //   description: state.user.email,
-// // //   tag: state.wallet.tag,
-// // //   method: state.wallet.method,
-// // //   value: state.wallet.value,
-// // //   currency: state.wallet.name,
-// // //   valueCurrency: state.wallet.ask,
-// // //   brlValue: state.wallet.brlValue,
-// // // });
-export default TableExpenses;
-// // export default connect(mapStateToProps)(tableExpenses);
+const mapStateToProps = (state) => ({
+  expenses: state.wallet.expenses,
+});
 
-// // tableExpenses.propTypes = {
-// //   description: PropTypes.string.isRequired,
-// //   tag: PropTypes.string.isRequired,
-// //   method: PropTypes.string.isRequired,
-// //   value: PropTypes.number.isRequired,
-// //   currency: PropTypes.string.isRequired,
-// //   valueCurrency: PropTypes.number.isRequired,
-// //   brlValue: PropTypes.number.isRequired,
-// // };
+TableExpenses.propTypes = {
+  expenses: PropTypes.arrayOf(PropTypes.string),
+}.isRequired;
+
+export default connect(mapStateToProps)(TableExpenses);
