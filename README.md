@@ -1,13 +1,32 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+## :information_source: Wallet
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Projeto desenvolvido para controle de gastos do usuário e consolidar os conhecimentos em Redux no React.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+
+## :rocket: Stack utilizada
+
+* Front-end: React, Node, Redux.
+
+---
+
+## Habilidades desenvolvidas
+
+* Criar um store Redux em aplicações React
+* Criar reducers no Redux em aplicações React
+* Criar actions no Redux em aplicações React
+* Criar dispatchers no Redux em aplicações React
+* Conectar Redux aos componentes React
+* Criar actions assíncronas na sua aplicação React que faz uso de Redux.
+
+---
+
+## :link: O que foi desenvolvido
+
+Neste projeto foi desenvolvido uma carteira de controle de gastos com conversor de moedas, ao utilizar essa aplicação um usuário deverá ser capaz de:
+
+* Adicionar, remover e editar um gasto;
+* Visualizar uma tabelas com seus gastos;
+* Visualizar o total de gastos convertidos para uma moeda de escolha;
+
+
+### Projeto realizado no módulo de Front-end do Curso de Desenvolvimento WEB da TRYBE.
